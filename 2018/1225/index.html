@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>探索条件生成ツール</title>
+    <style>
+      .row { margin-top: 4px; }
+      .active { color: crimson; }
+    </style>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Vue.js -->
+    <!-- B3+H/%P!<%8%g%s!"JXMx%3%s%=!<%k$,4^$^9966$^B -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <!-- BK\HV%P!<%8%g%s!"%5%$%:.EY0:GE,2=9966$^B -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    -->
+  </head>
+  <body>
+    <div id="app">
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">探索条件生成ツール</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#key" data-toggle="modal" data-target="#modal1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;アクセスキー</a></li>
+              <li><input type="text" class="form-control" style="margin-top: 8px;" size="60" v-model="condition">
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- contents -->
+      <div style="margin-top:60px;"></div>
+      <div class="container theme-showcase" role="main">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              駅すぱあとWebサービスの<a href="http://docs.ekispert.com/v1/api/toolbox/course/condition.html" target="_blank">探索条件</a>を生成するツールです。
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-default" v-on:click="reset" style="width:100%;">デフォルト値に戻す</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover">
+              <tr v-for="c in conditions" v-bind:class="{ active: c.default != c.value }">
+                <td>{{c.name}}</td>
+                <td>
+                  <div v-for="o in c.options">
+                    <label><input type="radio" v-model="c.value" v-bind:value="o.value" v-on:click="update(o.value)">&nbsp;{{o.description}}({{o.value}})</label>
+                  </div>
+                </td>
+                <td>{{c.description}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- modal dislogs -->
+      <div id="modal1" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">アクセスキー設定</h4>
+            </div>
+            <div class="modal-body">
+              <p>
+                <a href="http://docs.ekispert.com/v1/" target="_blank">駅すぱあとWebサービス</a>のアクセスキーを設定してください。
+              </p>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">アクセスキー</span>
+                  <input type="text" class="form-control" v-model="ews_access_key">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" v-on:click="checkAccessKey">確認</button>
+                  </span>
+                </span>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" v-model="store_ews_access_key">&nbsp;アクセスキーをブラウザに記憶させる
+                </label>
+              </div>
+              <div>
+                <span style="color:red;">{{ews_access_key_errmsg}}</span>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" v-on:click="keySetup">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- <div id="app"> -->
+    <!-- My Application JS -->
+    <script src="app.js"></script>
+  </body>
+</html>
+
