@@ -48,7 +48,7 @@ var vm = new Vue({
       vm.viaLists[1].marker = L.marker([vm.viaLists[1].lat, vm.viaLists[1].lng]); 
       vm.viaLists[1].marker.addTo(vm.mymap);
 
-      let searchWord = `viaList=${vm.viaLists[0].lat},${vm.viaLists[0].lng},2000:${vm.viaLists[1].lat},${vm.viaLists[1].lng},2000&type=plain`;
+      let searchWord = `viaList=${vm.viaLists[0].lat},${vm.viaLists[0].lng},wgs84,2000:${vm.viaLists[1].lat},${vm.viaLists[1].lng},wgs84,2000&type=plain`;
 
       vm.resultApp.search(searchWord, vm.resultApp.PRICE_TEIKI,null);
     });
@@ -62,7 +62,7 @@ var vm = new Vue({
     this.viaLists[0].marker.addTo(this.mymap);
     this.viaLists[1].marker.addTo(this.mymap);
 
-    let searchWord = `viaList=${this.viaLists[0].lat},${this.viaLists[0].lng},2000:${this.viaLists[1].lat},${this.viaLists[1].lng},2000&type=plain`;
+    let searchWord = `viaList=${this.viaLists[0].lat},${this.viaLists[0].lng},wgs84,2000:${this.viaLists[1].lat},${this.viaLists[1].lng},wgs84,2000&type=plain`;
     // 探索を実行
     this.resultApp.search(searchWord,this.resultApp.PRICE_TEIKI,null);
   },
