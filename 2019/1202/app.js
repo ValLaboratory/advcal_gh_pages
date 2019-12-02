@@ -55,6 +55,7 @@ var vm = new Vue({
 
     this.resultApp = new expGuiCourse(document.getElementById("result"));
     this.resultApp.setConfigure("key", this.ews_access_key);
+    this.resultApp.setConfigure("ssl", true);
 
     this.viaLists[0].marker = L.marker([this.viaLists[0].lat, this.viaLists[0].lng]); 
     this.viaLists[1].marker = L.marker([this.viaLists[1].lat, this.viaLists[1].lng]); 
