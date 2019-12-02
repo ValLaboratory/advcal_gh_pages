@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>緯度経度から探索するサンプル</title>
+    <style>
+      .row { margin-top: 4px; }
+    </style>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <!-- 経路表示パーツ --> 
+    <link class="css" rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/EkispertWebService/GUI/845877b1/expGuiCourse/expCss/expGuiCourse.css">
+    <script type="text/javascript" src="https://cdn.rawgit.com/EkispertWebService/GUI/845877b1/expGuiCourse/expGuiCourse.js" charset="UTF-8"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">緯度経度から探索するサンプル</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#key" data-toggle="modal" data-target="#modal1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;アクセスキー</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- contents -->
+      <div style="margin-top:70px;"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="result" ></div>
+        </div>
+        <div class="col-md-6">
+		      <div id="map" style="height:600px;width:100%;"></div>
+        </div>
+      </div>
+      <!-- modal dislogs -->
+      <div id="modal1" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">アクセスキー設定</h4>
+            </div>
+            <div class="modal-body">
+              <p>
+                <a href="http://docs.ekispert.com/v1/" target="_blank">駅すぱあとWebサービス</a>のアクセスキーを設定してください。
+              </p>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">アクセスキー</span>
+                  <input type="text" class="form-control" v-model="ews_access_key">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" v-on:click="checkAccessKey">確認</button>
+                  </span>
+                </span>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" v-model="store_ews_access_key">&nbsp;アクセスキーをブラウザに記憶させる
+                </label>
+              </div>
+              <div>
+                <span style="color:red;">{{ews_access_key_errmsg}}</span>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" v-on:click="keySetup">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- <div id="app"> -->
+    <!-- My Application JS -->
+    <script src="app.js"></script>
+  </body>
+</html>
+
