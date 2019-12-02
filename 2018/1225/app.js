@@ -491,7 +491,7 @@ var vm = new Vue({
             return false;
         }
 
-        fetch(`http://api.ekispert.jp/v1/json/dataversion?key=${this.ews_access_key}`)
+        fetch(`https://api.ekispert.jp/v1/json/dataversion?key=${this.ews_access_key}`)
         .then((response) => { return response.json(); })
         .catch((error) => {
             this.ews_access_key_errmsg = 'チェックに失敗しました。アクセスキーが間違っていないか確認してみてください。';
@@ -513,7 +513,7 @@ var vm = new Vue({
         }
       }
 
-      let url = `http://api.ekispert.jp/v1/json/toolbox/course/condition?key=${this.ews_access_key}${params}`;
+      let url = `https://api.ekispert.jp/v1/json/toolbox/course/condition?key=${this.ews_access_key}${params}`;
       console.log(url);
 
       fetch(url)
